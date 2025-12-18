@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Puchki ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a1a;
+            --accent: #ff4d8d;
+            --accent-light: #ff8ab5;
+            --text-light: #f0f0f0;
+            --text-muted: #aaa;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Background animations */
+        #hearts-bg, #stars-bg, #sparkles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart, .star, .sparkle {
+            position: absolute;
+            opacity: 0.3;
+        }
+        
+        .heart {
+            color: var(--accent);
+            font-size: 20px;
+            animation: float 8s infinite linear;
+        }
+        
+        .star {
+            color: var(--gold);
+            font-size: 12px;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+        
+        .sparkle {
+            color: var(--silver);
+            font-size: 10px;
+            animation: sparkle 3s infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.1; transform: scale(0.8); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.9), rgba(10,10,10,0.5));
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 77, 141, 0.5);
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s, transform 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        .music-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .music-control:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .music-control i {
+            font-size: 1.2rem;
+        }
+        
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 8rem 0 5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--gold);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-top: 10rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(255, 77, 141, 0.7);
+        }
+        
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--text-muted);
+        }
+        
+        .heart-divider {
+            font-size: 2rem;
+            color: var(--accent);
+            margin: 2rem 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        
+        /* Flirty Lines Section */
+        .flirty-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .flirty-line {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flirty-line:hover {
+            background: rgba(255, 77, 141, 0.1);
+            border-color: rgba(255, 77, 141, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .flirty-line .visible {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        
+        .flirty-line .hidden {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--accent);
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s;
+        }
+        
+        .flirty-line.revealed .hidden {
+            opacity: 1;
+            max-height: 100px;
+            margin-top: 1rem;
+        }
+        
+        .reveal-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .flirty-line.revealed .reveal-icon {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        /* Poetic Message Section */
+        .poetic-message {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .poetic-message:before {
+            content: '❝';
+            position: absolute;
+            top: -30px;
+            left: 30px;
+            font-size: 5rem;
+            color: var(--accent);
+            opacity: 0.5;
+        }
+        
+        .poetic-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--text-light);
+        }
+        
+        .signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+        
+        /* Games Section */
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .game-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+        
+        .game-card:hover {
+            background: rgba(255, 77, 141, 0.1);
+            border-color: rgba(255, 77, 141, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        .game-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            height: 80px;
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+        }
+        
+        .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .game-desc {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .game-btn {
+            background: linear-gradient(to right, var(--accent), #ff6ba9);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .game-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 77, 141, 0.4);
+        }
+        
+        /* Game Modals */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent);
+        }
+        
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            text-align: center;
+        }
+        
+        /* Specific game styles */
+        .ink-reveal {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            line-height: 1.8;
+            color: #1a1a1a;
+            background: #f5f1e0;
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+            border: 1px solid #d4b483;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+            min-height: 300px;
+            user-select: none;
+        }
+        
+        .ink-reveal .revealed {
+            color: #3a281f;
+        }
+        
+        .ink-reveal .hidden {
+            background: #3a281f;
+            color: transparent;
+            transition: background 0.5s, color 0.5s;
+        }
+        
+        .heart-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .single-heart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .heart-beat {
+            width: 120px;
+            height: 120px;
+            background: var(--accent);
+            position: relative;
+            transform: rotate(45deg);
+            animation: heartbeat 1.5s infinite;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(255, 77, 141, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .heart-beat:before, .heart-beat:after {
+            content: '';
+            width: 120px;
+            height: 120px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .heart-beat:before {
+            top: -60px;
+            left: 0;
+        }
+        
+        .heart-beat:after {
+            top: 0;
+            left: -60px;
+        }
+        
+        .heart-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+            transform: rotate(-45deg);
+            z-index: 1;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+        
+        .sync-message {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-top: 2rem;
+            font-weight: 600;
+        }
+        
+        .lock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .love-lock {
+            font-size: 5rem;
+            color: var(--gold);
+            cursor: pointer;
+            transition: all 0.5s;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+        
+        .love-lock.locked {
+            transform: rotate(180deg);
+            color: var(--accent);
+        }
+        
+        .name-input {
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            font-size: 1.2rem;
+            width: 80%;
+            text-align: center;
+        }
+        
+        .name-input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 77, 141, 0.5);
+        }
+        
+        /* Birthday Wishes Section */
+        .birthday-wishes {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 2rem;
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 2rem;
+            position: relative;
+        }
+        
+        .wish {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .wish:last-child {
+            margin-bottom: 0;
+        }
+        
+        .wish-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            background: rgba(0, 0, 0, 0.5);
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-heart {
+            color: var(--accent);
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .games-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .heart-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .poetic-message {
+                padding: 2rem;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
+        }
+        
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background-color: var(--accent);
+            top: -10px;
+            z-index: 10000;
+        }
+        
+        .confetti:nth-child(odd) {
+            background-color: var(--gold);
+        }
+        
+        .confetti:nth-child(even) {
+            background-color: var(--accent-light);
+        }
+        
+        .confetti:nth-child(4n) {
+            background-color: var(--silver);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div id="hearts-bg"></div>
+    <div id="stars-bg"></div>
+    <div id="sparkles-bg"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">For My <span>Puchki</span> ❤️</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#flirty">Flirty Lines</a></li>
+                    <li><a href="#poetic">Love Message</a></li>
+                    <li><a href="#games">Love Games</a></li>
+                    <li><a href="#birthday">Birthday Wishes</a></li>
+                </ul>
+            </nav>
+            <div class="music-control" id="musicToggle">
+                <i class="fas fa-play"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Audio Player (hidden) -->
+    <audio id="loveSong" loop>
+        <!-- In a real implementation, you would link to your love-story.mp3 file -->
+        <!-- For this example, we'll use a placeholder -->
+        <source src="https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="section hero">
+            <div class="container">
+                <h1>My Dearest Puchki,</h1>
+                <h2>You Are My Forever Love ❤️</h2>
+                <div class="heart-divider">♥</div>
+                <p>This website is a small token of my infinite love for you. Every line, every animation, every game is a reflection of how much you mean to me. You light up my world in ways I never imagined possible.</p>
+                <p>Scroll down to discover all the love I've poured into this digital space just for you, my beautiful Prachi.</p>
+                <div class="heart-divider">♥</div>
+                <p><em>With all my heart, forever and always.</em></p>
+            </div>
+        </section>
+        
+        <!-- Flirty Lines Section -->
+        <section id="flirty" class="section">
+            <div class="container">
+                <h2 class="section-title">Flirty Lines For You</h2>
+                <div class="flirty-lines">
+                    <div class="flirty-line" onclick="revealLine(this)">
+                        <div class="visible">Are you a magician? Because whenever I look at you...</div>
+                        <div class="hidden">...everyone else disappears. ✨</div>
+                        <div class="reveal-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="flirty-line" onclick="revealLine(this)">
+                        <div class="visible">Do you have a map? Because I keep getting lost...</div>
+                        <div class="hidden">...in your eyes. 🌟</div>
+                        <div class="reveal-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="flirty-line" onclick="revealLine(this)">
+                        <div class="visible">Is your name Google? Because you have everything...</div>
+                        <div class="hidden">...I've been searching for. 💖</div>
+                        <div class="reveal-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="flirty-line" onclick="revealLine(this)">
+                        <div class="visible">If you were a vegetable, you'd be a...</div>
+                        <div class="hidden">...cute-cumber! 😉🥒</div>
+                        <div class="reveal-icon"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Poetic Love Message -->
+        <section id="poetic" class="section">
+            <div class="container">
+                <h2 class="section-title">My Heart's Message</h2>
+                <div class="poetic-message">
+                    <p class="poetic-text">
+                        My dearest Prachi, from the moment you came into my life, everything changed. The colors became brighter, the days became warmer, and my heart found a home it never knew it was missing. You are the melody that plays in the quiet moments of my day, the smile that visits my lips when I least expect it, and the warmth that fills me even on the coldest nights.
+                    </p>
+                    <p class="poetic-text">
+                        In your eyes, I found galaxies I want to explore forever. In your laughter, I found music that resonates with my soul. In your touch, I found comfort that heals all wounds. You are not just my love; you are my sanctuary, my inspiration, my greatest adventure.
+                    </p>
+                    <p class="poetic-text">
+                        With every beat of my heart, I love you more than the moment before. You are my today, my tomorrow, and all the days that will follow. Thank you for being you, for loving me, and for making our love story the most beautiful chapter of my life.
+                    </p>
+                    <div class="signature">Forever Yours</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Love Games -->
+        <section id="games" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Love Games</h2>
+                <div class="games-container">
+                    <!-- Game 1 -->
+                    <div class="game-card" onclick="openGame('ink-reveal')">
+                        <div class="game-icon"><i class="fas fa-feather-alt"></i></div>
+                        <h3 class="game-title">Secret Love Letter</h3>
+                        <p class="game-desc">Swipe to reveal a handwritten love letter written just for you, Puchki.</p>
+                        <button class="game-btn">Play <i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <!-- Game 2 -->
+                    <div class="game-card" onclick="openGame('heart-beat')">
+                        <div class="game-icon"><i class="fas fa-heartbeat"></i></div>
+                        <h3 class="game-title">Heart Beat Sync</h3>
+                        <p class="game-desc">Tap to make our heartbeats sync together in perfect rhythm.</p>
+                        <button class="game-btn">Play <i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <!-- Game 3 -->
+                    <div class="game-card" onclick="openGame('love-lock')">
+                        <div class="game-icon"><i class="fas fa-lock"></i></div>
+                        <h3 class="game-title">Love Lock Ceremony</h3>
+                        <p class="game-desc">Lock our love forever on this virtual bridge of eternal romance.</p>
+                        <button class="game-btn">Play <i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <!-- Game 4 -->
+                    <div class="game-card" onclick="openGame('shadow-reveal')">
+                        <div class="game-icon"><i class="fas fa-moon"></i></div>
+                        <h3 class="game-title">Love Shadow Reveal</h3>
+                        <p class="game-desc">Move light across shadows to reveal a secret love message.</p>
+                        <button class="game-btn">Play <i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <!-- Game 5 -->
+                    <div class="game-card" onclick="openGame('temperature')">
+                        <div class="game-icon"><i class="fas fa-thermometer-full"></i></div>
+                        <h3 class="game-title">Heart Temperature</h3>
+                        <p class="game-desc">See how my heart warms up only for you, my lovely Puchki.</p>
+                        <button class="game-btn">Play <i class="fas fa-play"></i></button>
+                    </div>
+                    
+                    <!-- Game 6 -->
+                    <div class="game-card" onclick="openGame('frequency')">
+                        <div class="game-icon"><i class="fas fa-sliders-h"></i></div>
+                        <h3 class="game-title">Love Frequency Tuner</h3>
+                        <p class="game-desc">Find the perfect frequency of our love connection.</p>
+                        <button class="game-btn">Play <i class="fas fa-play"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Birthday Wishes -->
+        <section id="birthday" class="section">
+            <div class="container">
+                <h2 class="section-title">Birthday Wishes For You</h2>
+                <div class="birthday-wishes">
+                    <div class="wish">
+                        <h3 class="wish-title">Wish #1: Eternal Joy</h3>
+                        <p>May every moment of your life be filled with the same joy and light that you bring into mine. Happy birthday to the woman who makes my world complete.</p>
+                    </div>
+                    <div class="wish">
+                        <h3 class="wish-title">Wish #2: Boundless Love</h3>
+                        <p>On your special day, I wish you love that grows deeper with each passing year, laughter that echoes through your days, and dreams that unfold into beautiful realities.</p>
+                    </div>
+                    <div class="wish">
+                        <h3 class="wish-title">Wish #3: Adventure Together</h3>
+                        <p>My wish for you is a lifetime of adventures, both big and small, and the promise that I'll be by your side for every single one of them. Happy birthday, my love!</p>
+                    </div>
+                    <div class="wish">
+                        <h3 class="wish-title">Wish #4: Health & Happiness</h3>
+                        <p>May you be blessed with excellent health, unwavering happiness, and success in all your endeavors. You deserve the universe and more, my dear Puchki.</p>
+                    </div>
+                    <div class="wish">
+                        <h3 class="wish-title">Wish #5: Our Forever</h3>
+                        <p>My greatest birthday wish for you is that our love continues to grow stronger, deeper, and more beautiful with each passing day. Here's to forever with you.</p>
+                    </div>
+                    <div class="wish">
+                        <h3 class="wish-title">Wish #6: Dreams Fulfilled</h3>
+                        <p>May all your dreams take flight and may you find fulfillment in every aspect of your life. I'll always be here cheering you on, my amazing Prachi.</p>
+                    </div>
+                    <div class="wish">
+                        <h3 class="wish-title">Wish #7: Laughter & Light</h3>
+                        <p>I wish you days filled with genuine laughter, nights filled with peaceful rest, and a life filled with purpose and light. Happy birthday to my everything.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-heart">♥</div>
+            <p>Made with infinite love for my Puchki, Prachi</p>
+            <p>Every day with you is a blessing I cherish</p>
+            <p>© <span id="currentYear"></span> Our Love Story | Forever Yours</p>
+        </div>
+    </footer>
+    
+    <!-- Game Modals -->
+    <!-- Ink Reveal Game -->
+    <div class="modal" id="ink-reveal-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeGame('ink-reveal')">&times;</button>
+            <h2 class="modal-title">Secret Love Letter</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-muted);">Swipe your finger across the letter to reveal the message</p>
+            
+            <div class="ink-reveal" id="inkRevealArea">
+                <span class="revealed">My Dearest Prachi,</span>
+                <span class="hidden"> There are not enough words in any language to express what you mean to me. </span>
+                <span class="hidden"> You came into my life like a gentle breeze on a summer day, </span>
+                <span class="hidden"> bringing comfort, joy, and a sense of completeness I never knew I was missing. </span>
+                <span class="hidden"> Your smile is my favorite sunrise, </span>
+                <span class="hidden"> your laughter my most cherished melody, </span>
+                <span class="hidden"> and your love the anchor that keeps me steady in life's storms. </span>
+                <span class="hidden"> With you, I've found a home not made of bricks, but of shared glances, </span>
+                <span class="hidden"> whispered secrets, and quiet moments that speak volumes. </span>
+                <span class="hidden"> I promise to cherish you, to stand by you, </span>
+                <span class="hidden"> and to love you more with each passing day. </span>
+                <span class="hidden"> Forever and always, my Puchki. </span>
+                <span class="revealed">With all my love,</span>
+                <span class="revealed">Your Soulmate</span>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="game-btn" onclick="resetInkReveal()">Reset Letter <i class="fas fa-redo"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Heart Beat Game -->
+    <div class="modal" id="heart-beat-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeGame('heart-beat')">&times;</button>
+            <h2 class="modal-title">Heart Beat Sync</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-muted);">Tap the hearts to make our heartbeats sync together</p>
+            
+            <div class="heart-container">
+                <div class="single-heart">
+                    <div class="heart-beat" onclick="tapHeart('my-heart')">
+                        <div class="heart-label">Me</div>
+                    </div>
+                    <div>Tap Count: <span id="my-heart-count">0</span></div>
+                </div>
+                <div class="single-heart">
+                    <div class="heart-beat" onclick="tapHeart('puchki-heart')">
+                        <div class="heart-label">Prachi</div>
+                    </div>
+                    <div>Tap Count: <span id="puchki-heart-count">0</span></div>
+                </div>
+            </div>
+            
+            <div class="sync-message" id="syncMessage">Tap to sync our hearts 💞</div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="game-btn" onclick="resetHeartSync()">Reset Hearts <i class="fas fa-redo"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Love Lock Game -->
+    <div class="modal" id="love-lock-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeGame('love-lock')">&times;</button>
+            <h2 class="modal-title">Love Lock Ceremony</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-muted);">Type your name and click the lock to seal our love forever</p>
+            
+            <div class="lock-container">
+                <input type="text" class="name-input" id="lockName" placeholder="Type your name here, Puchki" value="Prachi">
+                <div class="love-lock" id="loveLock" onclick="toggleLock()">🔒</div>
+                <div id="lockMessage" style="text-align: center; font-size: 1.3rem; color: var(--text-muted);">
+                    Click the lock to seal our love forever
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="game-btn" onclick="throwKey()">Throw Key Into River <i class="fas fa-key"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Shadow Reveal Game -->
+    <div class="modal" id="shadow-reveal-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeGame('shadow-reveal')">&times;</button>
+            <h2 class="modal-title">Love Shadow Reveal</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-muted);">Drag your finger across the screen to reveal the hidden message</p>
+            
+            <div style="position: relative; height: 300px; background: #1a1a1a; border-radius: 10px; overflow: hidden;">
+                <div id="shadowText" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.8rem; color: rgba(255,255,255,0.1); text-align: center; padding: 2rem; user-select: none;">
+                    Some things become clear only when love shines on them ✨
+                </div>
+                <canvas id="shadowCanvas" width="800" height="300" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: crosshair;"></canvas>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="game-btn" onclick="resetShadowReveal()">Reset Shadow <i class="fas fa-redo"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Heart Temperature Game -->
+    <div class="modal" id="temperature-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeGame('temperature')">&times;</button>
+            <h2 class="modal-title">Heart Temperature Meter</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-muted);">Tap or rub the heart to raise the temperature</p>
+            
+            <div style="text-align: center;">
+                <div id="heartThermometer" style="width: 150px; height: 300px; background: linear-gradient(to top, #0066ff, #00ff99, #ffff00, #ff6600, #ff0000); border-radius: 75px; margin: 0 auto 2rem; position: relative; border: 5px solid rgba(255,255,255,0.1); overflow: hidden;">
+                    <div id="thermometerFill" style="position: absolute; bottom: 0; width: 100%; height: 0%; background: rgba(0,0,0,0.7); transition: height 0.5s;"></div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2.5rem; color: white; z-index: 1;">❤️</div>
+                </div>
+                
+                <div id="tempMessage" style="font-size: 2rem; margin-bottom: 1rem; color: #0066ff;">Cold 💙</div>
+                <div id="tempValue" style="font-size: 1.5rem; margin-bottom: 2rem;">Temperature: 0°</div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button class="game-btn" onclick="warmHeart()">Warm Heart <i class="fas fa-fire"></i></button>
+                    <button class="game-btn" onclick="resetTemperature()">Reset <i class="fas fa-redo"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Frequency Tuner Game -->
+    <div class="modal" id="frequency-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeGame('frequency')">&times;</button>
+            <h2 class="modal-title">Love Frequency Tuner</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-muted);">Slide to find the perfect frequency of our love</p>
+            
+            <div style="text-align: center;">
+                <div id="frequencyDisplay" style="font-size: 2rem; margin-bottom: 2rem; color: var(--text-muted); font-family: monospace;">
+                    . . . - - - . . .
+                </div>
+                
+                <input type="range" min="1" max="100" value="50" class="slider" id="frequencySlider" style="width: 100%; height: 30px; margin-bottom: 2rem;">
+                
+                <div id="frequencyMessage" style="font-size: 1.3rem; margin-bottom: 2rem; min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                    Adjust the slider to find our love frequency
+                </div>
+                
+                <button class="game-btn" onclick="checkFrequency()">Check Connection <i class="fas fa-heart"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Create background animations
+            createBackgroundElements();
+            
+            // Trigger confetti on load
+            setTimeout(createConfetti, 1000);
+            
+            // Initialize games
+            initInkReveal();
+            initShadowReveal();
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Music control
+            const musicToggle = document.getElementById('musicToggle');
+            const loveSong = document.getElementById('loveSong');
+            const musicIcon = musicToggle.querySelector('i');
+            
+            musicToggle.addEventListener('click', function() {
+                if (loveSong.paused) {
+                    loveSong.play();
+                    musicIcon.classList.remove('fa-play');
+                    musicIcon.classList.add('fa-pause');
+                } else {
+                    loveSong.pause();
+                    musicIcon.classList.remove('fa-pause');
+                    musicIcon.classList.add('fa-play');
+                }
+            });
+            
+            // Auto-play music (with user interaction requirement)
+            document.addEventListener('click', function initAudio() {
+                if (loveSong.paused) {
+                    loveSong.volume = 0.5;
+                    loveSong.play().then(() => {
+                        musicIcon.classList.remove('fa-play');
+                        musicIcon.classList.add('fa-pause');
+                    }).catch(e => {
+                        console.log("Audio play failed:", e);
+                    });
+                }
+                document.removeEventListener('click', initAudio);
+            });
+        });
+        
+        // Create background animation elements
+        function createBackgroundElements() {
+            const heartsBg = document.getElementById('hearts-bg');
+            const starsBg = document.getElementById('stars-bg');
+            const sparklesBg = document.getElementById('sparkles-bg');
+            
+            // Create hearts
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '♥';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                heart.style.fontSize = `${15 + Math.random() * 20}px`;
+                heartsBg.appendChild(heart);
+            }
+            
+            // Create stars
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.innerHTML = '✦';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                star.style.fontSize = `${8 + Math.random() * 10}px`;
+                starsBg.appendChild(star);
+            }
+            
+            // Create sparkles
+            for (let i = 0; i < 30; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.innerHTML = '❈';
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                sparkle.style.animationDelay = `${Math.random() * 3}s`;
+                sparkle.style.fontSize = `${5 + Math.random() * 10}px`;
+                sparklesBg.appendChild(sparkle);
+            }
+        }
+        
+        // Confetti effect
+        function createConfetti() {
+            const confettiCount = 100;
+            const container = document.body;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Random position
+                confetti.style.left = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                
+                // Random shape
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                
+                // Random rotation
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                // Random animation
+                const animationDuration = Math.random() * 3 + 2;
+                confetti.style.animation = `float ${animationDuration}s linear forwards`;
+                
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation completes
+                setTimeout(() => {
+                    confetti.remove();
+                }, animationDuration * 1000);
+            }
+        }
+        
+        // Flirty lines reveal
+        function revealLine(element) {
+            element.classList.toggle('revealed');
+            createConfetti();
+        }
+        
+        // Game functions
+        let currentGame = null;
+        
+        function openGame(gameId) {
+            currentGame = gameId;
+            document.getElementById(`${gameId}-modal`).classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Trigger confetti when opening a game
+            createConfetti();
+        }
+        
+        function closeGame(gameId) {
+            document.getElementById(`${gameId}-modal`).classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentGame = null;
+        }
+        
+        // Ink Reveal Game
+        function initInkReveal() {
+            const inkArea = document.getElementById('inkRevealArea');
+            const hiddenSpans = inkArea.querySelectorAll('.hidden');
+            
+            // Set initial state
+            hiddenSpans.forEach(span => {
+                span.style.background = '#3a281f';
+                span.style.color = 'transparent';
+                span.style.userSelect = 'none';
+            });
+            
+            // Add touch/mouse events
+            let isDrawing = false;
+            
+            inkArea.addEventListener('mousedown', () => isDrawing = true);
+            inkArea.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                isDrawing = true;
+                handleInkReveal(e.touches[0]);
+            });
+            
+            inkArea.addEventListener('mousemove', (e) => {
+                if (isDrawing) handleInkReveal(e);
+            });
+            
+            inkArea.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (isDrawing) handleInkReveal(e.touches[0]);
+            });
+            
+            document.addEventListener('mouseup', () => isDrawing = false);
+            document.addEventListener('touchend', () => isDrawing = false);
+            
+            function handleInkReveal(e) {
+                const rect = inkArea.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                hiddenSpans.forEach(span => {
+                    const spanRect = span.getBoundingClientRect();
+                    const spanX = spanRect.left - rect.left;
+                    const spanY = spanRect.top - rect.top;
+                    const spanWidth = spanRect.width;
+                    const spanHeight = spanRect.height;
+                    
+                    // Check if cursor is over this span
+                    if (x >= spanX && x <= spanX + spanWidth && y >= spanY && y <= spanY + spanHeight) {
+                        span.style.background = 'transparent';
+                        span.style.color = '#3a281f';
+                        span.style.transition = 'all 0.5s ease';
+                    }
+                });
+            }
+        }
+        
+        function resetInkReveal() {
+            const hiddenSpans = document.querySelectorAll('#inkRevealArea .hidden');
+            hiddenSpans.forEach(span => {
+                span.style.background = '#3a281f';
+                span.style.color = 'transparent';
+            });
+        }
+        
+        // Heart Sync Game
+        let myHeartCount = 0;
+        let puchkiHeartCount = 0;
+        let syncInterval;
+        
+        function tapHeart(heartId) {
+            if (heartId === 'my-heart') {
+                myHeartCount++;
+                document.getElementById('my-heart-count').textContent = myHeartCount;
+            } else {
+                puchkiHeartCount++;
+                document.getElementById('puchki-heart-count').textContent = puchkiHeartCount;
+            }
+            
+            checkHeartSync();
+            createConfetti();
+        }
+        
+        function checkHeartSync() {
+            const syncMessage = document.getElementById('syncMessage');
+            const difference = Math.abs(myHeartCount - puchkiHeartCount);
+            
+            if (myHeartCount === 0 && puchkiHeartCount === 0) {
+                syncMessage.textContent = "Tap to sync our hearts 💞";
+            } else if (difference <= 2 && myHeartCount > 0 && puchkiHeartCount > 0) {
+                syncMessage.textContent = "Hearts are syncing... 💓";
+                syncMessage.style.color = "#ff4d8d";
+                
+                if (difference === 0) {
+                    syncMessage.textContent = "Hearts are perfectly synced! Infinite Love 💞";
+                    syncMessage.style.color = "#ff4d8d";
+                    syncMessage.style.fontWeight = "bold";
+                    
+                    // Add pulsing animation
+                    clearInterval(syncInterval);
+                    syncInterval = setInterval(() => {
+                        syncMessage.style.transform = syncMessage.style.transform === 'scale(1.1)' ? 'scale(1)' : 'scale(1.1)';
+                    }, 300);
+                    
+                    createConfetti();
+                }
+            } else {
+                syncMessage.textContent = "Keep tapping to sync hearts 💖";
+                syncMessage.style.color = "#ff8ab5";
+            }
+        }
+        
+        function resetHeartSync() {
+            myHeartCount = 0;
+            puchkiHeartCount = 0;
+            document.getElementById('my-heart-count').textContent = '0';
+            document.getElementById('puchki-heart-count').textContent = '0';
+            document.getElementById('syncMessage').textContent = "Tap to sync our hearts 💞";
+            document.getElementById('syncMessage').style.color = "#ff4d8d";
+            clearInterval(syncInterval);
+        }
+        
+        // Love Lock Game
+        function toggleLock() {
+            const lock = document.getElementById('loveLock');
+            const lockMessage = document.getElementById('lockMessage');
+            const name = document.getElementById('lockName').value || 'Prachi';
+            
+            if (lock.classList.contains('locked')) {
+                lock.classList.remove('locked');
+                lock.textContent = '🔒';
+                lockMessage.innerHTML = `Click the lock to seal our love forever`;
+            } else {
+                lock.classList.add('locked');
+                lock.textContent = '🔓';
+                lockMessage.innerHTML = `Locked with love by ${name} & Me<br><em>Now this lock can only be opened by love.</em>`;
+                lockMessage.style.color = "#ff4d8d";
+                createConfetti();
+            }
+        }
+        
+        function throwKey() {
+            const lockMessage = document.getElementById('lockMessage');
+            const name = document.getElementById('lockName').value || 'Prachi';
+            
+            lockMessage.innerHTML = `🔑 The key to ${name}'s heart has been thrown into the river of eternal love!<br><em>Our love is now sealed forever. 💖</em>`;
+            lockMessage.style.color = "#ffd700";
+            lockMessage.style.fontSize = "1.2rem";
+            createConfetti();
+        }
+        
+        // Shadow Reveal Game
+        function initShadowReveal() {
+            const canvas = document.getElementById('shadowCanvas');
+            const ctx = canvas.getContext('2d');
+            const textDiv = document.getElementById('shadowText');
+            
+            // Set canvas size
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            // Draw initial shadow
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            let isDrawing = false;
+            
+            // Event listeners for drawing
+            canvas.addEventListener('mousedown', () => isDrawing = true);
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                isDrawing = true;
+                draw(e.touches[0]);
+            });
+            
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                draw(e.touches[0]);
+            });
+            
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('touchend', () => isDrawing = false);
+            
+            function draw(e) {
+                if (!isDrawing) return;
+                
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Create a circular reveal effect
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 40, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Gradually reveal the text
+                const revealedArea = calculateRevealedArea();
+                if (revealedArea > 0.5) { // When 50% is revealed
+                    textDiv.style.color = 'rgba(255, 255, 255, 0.8)';
+                    textDiv.style.textShadow = '0 0 10px rgba(255, 77, 141, 0.7)';
+                }
+            }
+            
+            function calculateRevealedArea() {
+                // Simplified calculation - in a real implementation you'd calculate the actual revealed pixels
+                return 0;
+            }
+        }
+        
+        function resetShadowReveal() {
+            const canvas = document.getElementById('shadowCanvas');
+            const ctx = canvas.getContext('2d');
+            const textDiv = document.getElementById('shadowText');
+            
+            // Reset canvas
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Reset text
+            textDiv.style.color = 'rgba(255, 255, 255, 0.1)';
+            textDiv.style.textShadow = 'none';
+        }
+        
+        // Heart Temperature Game
+        let temperature = 0;
+        
+        function warmHeart() {
+            if (temperature < 100) {
+                temperature += 10;
+                updateTemperature();
+            }
+        }
+        
+        function updateTemperature() {
+            const fill = document.getElementById('thermometerFill');
+            const message = document.getElementById('tempMessage');
+            const value = document.getElementById('tempValue');
+            
+            // Update fill height
+            fill.style.height = `${temperature}%`;
+            
+            // Update temperature value
+            value.textContent = `Temperature: ${temperature}°`;
+            
+            // Update message based on temperature
+            if (temperature <= 20) {
+                message.textContent = "Cold 💙";
+                message.style.color = "#0066ff";
+            } else if (temperature <= 40) {
+                message.textContent = "Warming Up 💚";
+                message.style.color = "#00ff99";
+            } else if (temperature <= 60) {
+                message.textContent = "Getting Warm 💛";
+                message.style.color = "#ffff00";
+            } else if (temperature <= 80) {
+                message.textContent = "Hot ❤️";
+                message.style.color = "#ff6600";
+            } else {
+                message.textContent = "On Fire! ❤️‍🔥";
+                message.style.color = "#ff0000";
+                message.style.fontWeight = "bold";
+                
+                if (temperature === 100) {
+                    message.innerHTML = "Looks like my heart only warms up for you! ❤️‍🔥";
+                    createConfetti();
+                }
+            }
+        }
+        
+        function resetTemperature() {
+            temperature = 0;
+            updateTemperature();
+        }
+        
+        // Frequency Tuner Game
+        let perfectFrequencyFound = false;
+        
+        function checkFrequency() {
+            const slider = document.getElementById('frequencySlider');
+            const value = parseInt(slider.value);
+            const message = document.getElementById('frequencyMessage');
+            const display = document.getElementById('frequencyDisplay');
+            
+            // Check if the frequency is close to the perfect value (73)
+            if (Math.abs(value - 73) <= 3) {
+                if (!perfectFrequencyFound) {
+                    perfectFrequencyFound = true;
+                    message.innerHTML = "Prachi × Me = Perfect Signal 📻❤️<br><em>You found our love frequency!</em>";
+                    message.style.color = "#ff4d8d";
+                    display.textContent = "❤️ P R A C H I ❤️ M E ❤️";
+                    display.style.color = "#ff4d8d";
+                    display.style.textShadow = "0 0 10px rgba(255, 77, 141, 0.7)";
+                    createConfetti();
+                }
+            } else {
+                // Show random static
+                const staticPatterns = [". . . - - - . . .", "- - . . . - -", ". - . - . -", "~ ~ ~ . . . ~ ~ ~"];
+                display.textContent = staticPatterns[Math.floor(Math.random() * staticPatterns.length)];
+                display.style.color = "#aaa";
+                display.style.textShadow = "none";
+                
+                message.textContent = "Keep adjusting to find our perfect frequency...";
+                message.style.color = "#aaa";
+            }
+        }
+        
+        // Update frequency display as slider moves
+        document.getElementById('frequencySlider').addEventListener('input', function() {
+            const display = document.getElementById('frequencyDisplay');
+            const value = parseInt(this.value);
+            
+            // Show different patterns based on value
+            if (value < 30) {
+                display.textContent = ". . . . . . . .";
+            } else if (value < 60) {
+                display.textContent = "- - - - - - - -";
+            } else if (value < 90) {
+                display.textContent = "~ ~ ~ ~ ~ ~ ~ ~";
+            } else {
+                display.textContent = "❤️ ❤️ ❤️ ❤️ ❤️ ❤️";
+            }
+            
+            // Reset perfect frequency if slider moves away
+            if (perfectFrequencyFound && Math.abs(value - 73) > 3) {
+                perfectFrequencyFound = false;
+                const message = document.getElementById('frequencyMessage');
+                message.textContent = "Adjust the slider to find our love frequency";
+                message.style.color = "#aaa";
+            }
+        });
+    </script>
+</body><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Example</title>
+</head>
+<body>
+
+<h1>Enjoy the Music 🎵</h1>
+
+<!-- Audio Player -->
+<audio controls>
+    <source src="golden-brown.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+</body>
+</html>
